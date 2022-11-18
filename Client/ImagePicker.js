@@ -3,6 +3,8 @@ import { Button, Image, View, Platform } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 import Tesseract from 'tesseract.js';
 
+const Jimp = require('jimp');
+
 export default function ImagePickerExample() {
   const [image, setImage] = useState(null);
   const [imageText, setImageText] = useState('');
@@ -20,10 +22,17 @@ export default function ImagePickerExample() {
 
     if (!result.canceled) {
       setImage(result.assets[0].uri);
+      console.log(image);
+      setImage(Jimp.read(image)
+        .then(image => {
+          image.contrast(1)
+        })
+      );
+      console.log(image);
       Tesseract.recognize(image, 'rus',{ logger: m => console.log(m) }
       ).then(({ data: { text } }) => {
         setImageText(text);
-      })
+      });
     }
   };
 
