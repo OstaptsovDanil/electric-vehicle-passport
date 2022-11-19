@@ -40,6 +40,7 @@ const AuthScreen = () => {
 
     const dispatch = useDispatch();
 
+
     const nameValidator = useValidator([
         new Validation(checkLength(3,20), "Имя должна быть длиной от 3 до 20 символов"),
         new Validation(checkName, "В имени не может быть лишних символов"),
@@ -64,7 +65,8 @@ const AuthScreen = () => {
         new Validation(checkEqual(password), "Пароли не совпадают"),
     ]);
 
-    const registerFormValidator = useFormValidator(nameValidator, surnameValidator, passwordValidator,confirmPasswordValidator);
+    const registerFormValidator = useFormValidator(nameValidator, surnameValidator, passwordValidator,confirmPasswordValidator, phoneValidator);
+    const loginFormValidator = useFormValidator(loginValidator, passwordValidator);
 
     async function fetchRegistration() {
         const response = await userApi.registration({
@@ -76,7 +78,8 @@ const AuthScreen = () => {
     async function fetchLogin(){
         try{
             const response = await userApi.login({login,password})
-            await dispatch(fetchUserData())
+            dispatch(fetchUserData())
+            console.log('Dispatched',response)
             navigation.navigate('Cars');
         }
         catch(e){
@@ -98,23 +101,25 @@ const AuthScreen = () => {
 
     if (isRegistration)
         return (
-            <ScrollView contentContainerStyle={styles.container}>
-                <View style={styles.window}>
-                    <Text style={styles.title}>Регистрация</Text>
-                    <MyInput errorsHidden={errorsHidden} validator={surnameValidator} placeholder="Фамилия" value={surname} setValue={setSurname}/>
-                    <MyInput errorsHidden={errorsHidden} validator={nameValidator} placeholder="Имя" value={name} setValue={setName}/>
-                    <MyInput errorsHidden={errorsHidden} validator={phoneValidator} placeholder="Номер телефона" value={phone} setValue={setPhone}/>
-                    <MyInput errorsHidden={errorsHidden} validator={emailValidator} placeholder="Почта" value={email} setValue={setEmail}/>
-                    <MyInput errorsHidden={errorsHidden} validator={passwordValidator} placeholder="Пароль" value={password} setValue={setPassword} isPassword/>
-                    <MyInput errorsHidden={errorsHidden} validator={confirmPasswordValidator} placeholder="Повторите пароль" value={confirmPasswordText} setValue={setConfirmPasswordText} isPassword/>
-                    <MyButton onClick={fetchRegistration} text={'Зарегистрироваться'}></MyButton>
-                    <TouchableHighlight onPressOut={() => setIsRegistration(!isRegistration)}
-                                        underlayColor={stylesVars.$lightBlue}>
-                        <Text style={styles.offerText}>Есть аккаунт ? Войдите!</Text>
-                    </TouchableHighlight>
-                </View>
+            <View style = {{flex : 1}}>
+                <ScrollView contentContainerStyle={styles.container}>
+                    <View style={styles.window}>
+                        <Text style={styles.title}>Регистрация</Text>
+                        <MyInput errorsHidden={errorsHidden} validator={surnameValidator} placeholder="Фамилия" value={surname} setValue={setSurname}/>
+                        <MyInput errorsHidden={errorsHidden} validator={nameValidator} placeholder="Имя" value={name} setValue={setName}/>
+                        <MyInput errorsHidden={errorsHidden} validator={phoneValidator} placeholder="Номер телефона" value={phone} setValue={setPhone}/>
+                        <MyInput errorsHidden={errorsHidden} validator={emailValidator} placeholder="Почта" value={email} setValue={setEmail}/>
+                        <MyInput errorsHidden={errorsHidden} validator={passwordValidator} placeholder="Пароль" value={password} setValue={setPassword} isPassword/>
+                        <MyInput errorsHidden={errorsHidden} validator={confirmPasswordValidator} placeholder="Повторите пароль" value={confirmPasswordText} setValue={setConfirmPasswordText} isPassword/>
+                        <MyButton disabled={registerFormValidator?.hasErrors()} onClick={fetchRegistration} text={'Зарегистрироваться'}></MyButton>
+                        <TouchableHighlight onPressOut={() => setIsRegistration(!isRegistration)}
+                                            underlayColor={stylesVars.$lightBlue}>
+                            <Text style={styles.offerText}>Есть аккаунт ? Войдите!</Text>
+                        </TouchableHighlight>
+                    </View>
 
-            </ScrollView>
+                </ScrollView>
+            </View>
         )
 
     return (
@@ -123,7 +128,7 @@ const AuthScreen = () => {
                 <Text style={styles.title}>Авторизация</Text>
                 <MyInput errorsHidden={errorsHidden} validator={loginValidator} placeholder="Номер телефона или почта" value={login} setValue={setLogin}/>
                 <MyInput errorsHidden={errorsHidden} validator={passwordValidator} placeholder="Пароль" value={password} setValue={setPassword} isPassword/>
-                <MyButton onClick={fetchLogin} text={'Войти'}></MyButton>
+                <MyButton  disabled={false/*loginFormValidator?.hasErrors()*/} onClick={fetchLogin} text={'Войти'}></MyButton>
                 <TouchableHighlight onPressOut={() => setIsRegistration(!isRegistration)}
                                     underlayColor={stylesVars.$lightBlue}>
                     <Text style={styles.offerText}>Нет аккаунта? Зарегистрируйтесь!</Text>
@@ -137,9 +142,8 @@ export default AuthScreen;
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
-        height: 500,
         width: "100%",
+        minHeight:'100%',
         backgroundColor: '#F4FCFE',
         alignItems: 'center',
         justifyContent: 'center',
@@ -152,7 +156,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         paddingBottom: 30,
         paddingTop: 20,
-
+        marginTop: 70,
     },
     title: {
         fontSize: 20,

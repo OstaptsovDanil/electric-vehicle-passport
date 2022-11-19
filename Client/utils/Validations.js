@@ -56,3 +56,5 @@ export const checkName = (value) => (value.match(/[аАaA-яЯzZ]\s[аАaA-яЯz
 export const checkPhone = (value) => (value.match(/^(\+7|7|8)?[\s\-]?\(?[489][0-9]{2}\)?[\s\-]?[0-9]{3}[\s\-]?[0-9]{2}[\s\-]?[0-9]{2}$/));
 export const checkLength = (min,max) => ( (value) => (value?.length >= min && value?.length <= max) );
 export const checkEqual = (valueToEqual) => ((value)=>(value === valueToEqual))
+export const checkLogin = (value) => (checkEmail(value) || checkPhone(value))
+export const checkEmail = (value) => (value?.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/));

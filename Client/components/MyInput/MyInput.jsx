@@ -1,20 +1,29 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {StyleSheet, Text, TextInput, View} from "react-native";
 import {stylesVars} from "../../constants";
 
 // placeholder="Номер телефона" style={styles.input} value={login} onTextInput={value=>setLogin(value)
 
-const MyInput = ({validator,errorsHidden, placeholder,value ,setValue, isPassword = false}) => {
+const MyInput = ({validator,placeholder,value ,setValue, isPassword = false}) => {
 
+    const [showErrors, setShowErrors] = useState(false);
+
+    function blur(){
+        setShowErrors(true);
+    }
     function input(e){
         validator?.validate(e.nativeEvent.text)
         setValue(e.nativeEvent.text)
     }
 
+    useEffect(()=>{
+       validator?.validate('');
+    },[])
+
     return (
         <View style={styles.wrapper}>
-            <Text style={styles.error}>{!errorsHidden ? validator?.errors : ''}</Text>
-            <TextInput secureTextEntry={isPassword} style={styles.input} placeholder = {placeholder} value = {value} onChange={input}></TextInput>
+            <Text style={styles.error}>{showErrors ? validator?.errors : ''}</Text>
+            <TextInput onBlur={blur} secureTextEntry={isPassword} style={styles.input} placeholder = {placeholder} value = {value} onChange={input}></TextInput>
         </View>
     );
 };
