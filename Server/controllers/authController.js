@@ -8,15 +8,15 @@ import config from 'config'
 class AuthController{
     async register(req, res) {
         try {
-            const {fullName, email, password} = req.body
+            const {fullName, email, mobilePhone, password} = req.body
 
             const saltRounds = config.get("saltRounds")
             const passwordHash = await bcrypt.hash(password, saltRounds)
 
-            const user = await UserModel.create({fullName, email, password: passwordHash})
+            const user = await UserModel.create({fullName, email, mobilePhone, password: passwordHash})
             const token = createToken(user._id)
             res.json({
-                message: "Good",
+                message: "Register ok",
                 token
             })
         } catch(err) {
@@ -27,18 +27,39 @@ class AuthController{
 
     async login(req, res) {
         try {
-            const {email, password} = req.body
+            const {
+                email = undefined,
+                mobilePhone = undefined,
+                password = undefined
+            } = req.body
             
-            const user = await UserModel.findOne({email})
-            if (!user) {
-                return res.status(404).json({message: "Неверный логин "});
+            //Проверка, если пользователь ничего не ввел
+            if ((!!email && !!mobilePhone) || (!email && !mobilePhone)) {
+                return res.status(404).json({
+                    message: "Введите почту или пароль"
+                })
             }
-             
+        
+            if (!password) {
+                return res.status(404).json({
+                    message: "Введите пароль"
+                })
+            }
+        
+            const user = await UserModel.findOne(email ? {email} : {mobilePhone})
+            if (!user) {
+                return res.status(404).json({
+                    message: "Неверный логин "
+                })
+            }
+        
             const isPasswordValid = await bcrypt.compare(password, user.password)
             if (!isPasswordValid) {
-                return res.status(404).json({message: "Неверный  пароль " + password + " " + user.password})
+                return res.status(404).json({
+                    message: "Неверный  пароль "
+                })
             }
-            
+        
             const token = createToken(user._id)
             
             const {fullName} = user
@@ -46,7 +67,6 @@ class AuthController{
             res.json({
                 userData: {
                     fullName,
-                    email
                 },
                 token
             })
