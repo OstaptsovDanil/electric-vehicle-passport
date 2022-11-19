@@ -14,14 +14,11 @@ class ImageController {
                     message: "Неверный формат файла"
                 })
             }
-
+            const img_path = path.resolve('image', '..', 'Storage/images', fileName);
             await img.mv(path.resolve('image', '..', 'Storage/images', fileName));
-
-            //За это отвечает Даня
-            //const post = await Tesseract.recognize(img, "rus+eng");
-
+            const post = await Tesseract.recognize(img_path, "rus+eng");
             return res.json({
-                message: "ОК. Картинка загружена на сервер",
+                post
             });
         }
         catch(e){
