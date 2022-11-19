@@ -2,25 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="75b574e3-a453-4203-994d-88924320fc7e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Client/.env" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Client/http/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Client/http/userApi.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Client/store/slices/userSlice.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Client/store/store.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Client/assets/screens/AuthScreen.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Client/assets/screens/CarsScreen.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Client/components/Button/MyButton.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Client/components/CarCard/CarCard.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Client/components/Header/Header.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Client/components/MyInput/MyInput.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Client/constants.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Client/mock/carsCards.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Client/react-native-config.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Client/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/Client/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/assets/screens/AuthScreen.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Client/screens/AuthScreen.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/assets/screens/CarsScreen.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Client/screens/CarsScreen.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Client/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Client/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Client/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/Client/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/utils/Validations.js" beforeDir="false" afterPath="$PROJECT_DIR$/Client/utils/Validations.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/config/default.json" beforeDir="false" afterPath="$PROJECT_DIR$/Server/config/default.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/controllers/authController.js" beforeDir="false" afterPath="$PROJECT_DIR$/Server/controllers/authController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Server/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/Server/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/routes/authRouter.js" beforeDir="false" afterPath="$PROJECT_DIR$/Server/routes/authRouter.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/start.js" beforeDir="false" afterPath="$PROJECT_DIR$/Server/start.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/utils/checkAuth.js" beforeDir="false" afterPath="$PROJECT_DIR$/Server/utils/checkAuth.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,7 +46,6 @@
 }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\duste\OneDrive\Документы\Project\electric-vehicle-passport\Client" />
       <recent name="C:\Users\duste\OneDrive\Документы\Project\electric-vehicle-passport\Client\navigation" />
       <recent name="C:\Users\duste\OneDrive\Документы\Project\electric-vehicle-passport\Client\assets\screens" />
     </key>
@@ -74,7 +66,6 @@
       <workItem from="1668840601728" duration="3701000" />
       <workItem from="1668844584561" duration="675000" />
       <workItem from="1668845830572" duration="7491000" />
-      <workItem from="1668855601822" duration="14284000" />
     </task>
     <servers />
   </component>

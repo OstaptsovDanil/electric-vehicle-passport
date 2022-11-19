@@ -1,14 +1,12 @@
 import {StyleSheet, Text} from 'react-native';
 import {useFonts} from 'expo-font';
-import CarsScreen from "./screens/CarsScreen";
+import CarsScreen from "./assets/screens/CarsScreen";
 import {createNativeStackNavigator} from "react-native-screens/native-stack";
-import AuthScreen from "./screens/AuthScreen";
+import AuthScreen from "./assets/screens/AuthScreen";
 import React from "react";
 import {NavigationContainer} from "@react-navigation/native";
 import Header from "./components/Header/Header";
 import {stylesVars} from "./constants";
-import {Provider} from "react-redux";
-import {store} from "./store/store";
 
 export default function App() {
 
@@ -19,22 +17,20 @@ export default function App() {
     })
     const Stack = createNativeStackNavigator();
     return (
-        <Provider store={store}>
-            <NavigationContainer>
-                <Stack.Navigator>
-                    <Stack.Screen
-                        name="Auth"
-                        component={AuthScreen}
-                        options={{headerShown:false}}
-                    />
-                    <Stack.Screen
-                        name="Cars"
-                        component={CarsScreen}
-                        options={{headerShown:false}}
-                    />
-                </Stack.Navigator>
-            </NavigationContainer>
-        </Provider>
+        <NavigationContainer>
+            <Stack.Navigator>
+                <Stack.Screen
+                    name="Auth"
+                    component={AuthScreen}
+                    options={{headerShown:false}}
+                />
+                <Stack.Screen
+                    name="Cars"
+                    component={CarsScreen}
+                    options={{headerShown:false}}
+                />
+            </Stack.Navigator>
+        </NavigationContainer>
     );
 }
 
