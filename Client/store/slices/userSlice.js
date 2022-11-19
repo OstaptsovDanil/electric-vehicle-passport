@@ -2,7 +2,7 @@ import {createSlice} from "@reduxjs/toolkit";
 import jwtDecode from "jwt-decode";
 import {createAsyncThunk} from "@reduxjs/toolkit";
 import {AsyncStorage} from "react-native";
-import {getUserInfo} from "../../http/userApi";
+import {addCar, getUserInfo} from "../../http/userApi";
 
 export const LoadingStatuses = {loading:"loading",idle:"idle",error:"error"};
 
@@ -13,6 +13,13 @@ export const fetchUserData = createAsyncThunk(
     }
 )
 
+export const fetchAddNewCar = createAsyncThunk(
+    'user/fetchAddNewCar',
+    async(data)=>{
+        return await addCar(data);
+    }
+)
+
 const initialState = {
     userId:null,
     fullName:'',
@@ -20,6 +27,7 @@ const initialState = {
     email:'',
     cars:[],
     entranceLoadingStatus:LoadingStatuses.idle,
+    carLoadingStatus:LoadingStatuses.idle,
 }
 
 const userSlice = createSlice({
@@ -58,18 +66,24 @@ const userSlice = createSlice({
                 const {email,fullName,cars,mobilePhone} = action.payload;
                 state.email = email;
                 state.fullName = fullName;
-                state.cars = cars;
+                state.cars = [...cars];
                 state.mobilePhone = mobilePhone;
-                console.log('\n\n\nSTATE',state);
+                console.log('STATE USER : ',action.payload)
             }
             catch(e){
                 state.entranceLoadingStatus = LoadingStatuses.error
             }
         },
-        [fetchUserData.pending]: (state,action) =>{
+        [fetchUserData.pending]: (state) =>{
             state.entranceLoadingStatus = LoadingStatuses.loading;
         },
-
+        [fetchAddNewCar.fulfilled]: (state,action) =>{
+            state.carLoadingStatus = LoadingStatuses.idle;
+            state.cars = [...state.cars,action.payload]
+        },
+        [fetchAddNewCar.pending]: (state) =>{
+            state.carLoadingStatus = LoadingStatuses.loading;
+        },
     }
 
 })

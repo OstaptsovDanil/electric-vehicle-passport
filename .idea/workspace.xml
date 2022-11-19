@@ -2,27 +2,23 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="75b574e3-a453-4203-994d-88924320fc7e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Client/MyImagePicker.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Client/components/Select/Select.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Client/screens/AddCarScreen.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Client/screens/CarScreen.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Client/store/slices/activeCarSlice.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/Client/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/ImagePicker.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/ImagePickerExample.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/assets/screens/AuthScreen.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/assets/screens/CarsScreen.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/components/Button/MyButton.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Client/components/Button/MyButton.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Client/components/CarCard/CarCard.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Client/components/CarCard/CarCard.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/components/MyInput/MyInput.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Client/components/MyInput/MyInput.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/constants.js" beforeDir="false" afterPath="$PROJECT_DIR$/Client/constants.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Client/http/userApi.js" beforeDir="false" afterPath="$PROJECT_DIR$/Client/http/userApi.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Client/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/Client/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/mock/carsCards.js" beforeDir="false" afterPath="$PROJECT_DIR$/Client/mock/carsCards.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/screens/AddCarScreen.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Client/screens/AddCarScreen.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Client/screens/AuthScreen.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Client/screens/AuthScreen.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/screens/CarScreen.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Client/screens/CarScreen.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Client/screens/CarsScreen.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Client/screens/CarsScreen.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/store/slices/userSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/Client/store/slices/userSlice.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/store/store.js" beforeDir="false" afterPath="$PROJECT_DIR$/Client/store/store.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Client/utils/Validations.js" beforeDir="false" afterPath="$PROJECT_DIR$/Client/utils/Validations.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/Models/AutoPasportModel.js" beforeDir="false" afterPath="$PROJECT_DIR$/Server/Models/AutoPasportModel.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Server/controllers/authController.js" beforeDir="false" afterPath="$PROJECT_DIR$/Server/controllers/authController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/controllers/carController.js" beforeDir="false" afterPath="$PROJECT_DIR$/Server/controllers/carController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Server/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/routes/authRouter.js" beforeDir="false" afterPath="$PROJECT_DIR$/Server/routes/authRouter.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,16 +39,17 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/duste/OneDrive/Документы/Project/electric-vehicle-passport&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "C:/Users/duste/OneDrive/Документы/Project/electric-vehicle-passport",
+    "nodejs_package_manager_path": "npm",
+    "ts.external.directory.path": "C:\\Program Files\\JetBrains\\WebStorm 2022.1.3\\plugins\\JavaScriptLanguage\\jsLanguageServicesImpl\\external",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\duste\OneDrive\Документы\Project\electric-vehicle-passport\Client\navigation" />
@@ -75,6 +72,7 @@
       <workItem from="1668840601728" duration="3701000" />
       <workItem from="1668844584561" duration="675000" />
       <workItem from="1668845830572" duration="7491000" />
+      <workItem from="1668889625136" duration="11360000" />
     </task>
     <servers />
   </component>

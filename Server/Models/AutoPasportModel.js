@@ -11,13 +11,13 @@ const AutoPasportModel = Schema({
         ref: 'User', 
         required: true,
     },
-    mark: {
-        type: String,
-        required: true
-    },
     model: {
         type: String,
         required: true
+    },
+    vehicleType: {
+        type : String,
+        required: true,
     },
     nameOfVehicle: {
         type: String,
@@ -36,6 +36,10 @@ const AutoPasportModel = Schema({
         required: false
     },
     engineNumber: {
+        type: String,
+        required: false
+    },
+    carColor: {
         type: String,
         required: false
     },

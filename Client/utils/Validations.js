@@ -52,7 +52,7 @@ export function useValidator(validations,options = {
     }
 }
 
-export const checkName = (value) => (value.match(/[аАaA-яЯzZ]\s[аАaA-яЯzZ]/));
+export const checkName = (value) => (value.match(/[аАaA-яЯzZ]/));
 export const checkPhone = (value) => (value.match(/^(\+7|7|8)?[\s\-]?\(?[489][0-9]{2}\)?[\s\-]?[0-9]{3}[\s\-]?[0-9]{2}[\s\-]?[0-9]{2}$/));
 export const checkLength = (min,max) => ( (value) => (value?.length >= min && value?.length <= max) );
 export const checkEqual = (valueToEqual) => ((value)=>(value === valueToEqual))

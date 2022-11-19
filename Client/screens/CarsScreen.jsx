@@ -1,6 +1,5 @@
 import React, {useEffect} from 'react';
-import {ScrollView, StyleSheet, Text, View} from "react-native";
-import {carsCards} from "../mock/carsCards";
+import {ScrollView, StyleSheet} from "react-native";
 import CarCard from "../components/CarCard/CarCard";
 import {useSelector} from "react-redux";
 import MyButton from "../components/Button/MyButton";
@@ -11,19 +10,18 @@ const CarsScreen = () => {
     const {cars} = useSelector(state => state.user)
     const navigation = useNavigation();
 
-    //TODO загружать с api
     useEffect(() => {
-
-    }, [])
+        console.log(cars)
+    }, [cars])
 
     return (
         <ScrollView contentContainerStyle={styles.container}>
             {
-                carsCards.map(car => (
-                    <CarCard name={car.name}></CarCard>
+                cars?.map(car => (
+                    <CarCard key={car?.vin} carData={car}></CarCard>
                 ))
             }
-            <MyButton onClick={()=>navigation.navigate("AddCar")} style={styles.add} text={"+"} />
+            <MyButton onClick={() => navigation.navigate("AddCar")} style={styles.add} text={"+"}/>
         </ScrollView>
     );
 };
@@ -35,12 +33,12 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         paddingTop: 50
     },
-    add:{
-        width:60,
-        height:60,
-        borderRadius:30,
-        fontSize:5,
-        marginBottom:20
+    add: {
+        width: 60,
+        height: 60,
+        borderRadius: 30,
+        fontSize: 5,
+        marginBottom: 20
     }
 });
 

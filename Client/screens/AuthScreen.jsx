@@ -9,14 +9,14 @@ import * as userApi from '../http/userApi'
 import {
     checkEmail,
     checkEqual,
-    checkLength, checkLogin,
+    checkLength,
+    checkLogin,
     checkName,
     checkPhone,
     useFormValidator,
     useValidator,
     Validation
 } from "../utils/Validations";
-import {registration} from "../http/userApi";
 import {useDispatch} from "react-redux";
 import {fetchUserData} from "../store/slices/userSlice";
 
@@ -28,7 +28,7 @@ const AuthScreen = () => {
 
     const navigation = useNavigation();
 
-    const [isRegistration, setIsRegistration] = useState(true);
+    const [isRegistration, setIsRegistration] = useState(false);
     const [surname, setSurname] = useState('');
     const [name, setName] = useState('');
     const [login, setLogin] = useState('');
@@ -36,17 +36,16 @@ const AuthScreen = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPasswordText, setConfirmPasswordText] = useState('');
-    const [errorsHidden,setErrorsHidden] = useState(false);
+    const [errors,setErrors] = useState('')
 
     const dispatch = useDispatch();
 
-
     const nameValidator = useValidator([
-        new Validation(checkLength(3,20), "Имя должна быть длиной от 3 до 20 символов"),
+        new Validation(checkLength(3, 20), "Имя должна быть длиной от 3 до 20 символов"),
         new Validation(checkName, "В имени не может быть лишних символов"),
     ]);
     const surnameValidator = useValidator([
-        new Validation(checkLength(5,25), "Фамилия должна быть длиной от 5 до 25 символов"),
+        new Validation(checkLength(5, 25), "Фамилия должна быть длиной от 5 до 25 символов"),
         new Validation(checkName, "В фамилии не может быть лишних символов"),
     ]);
     const phoneValidator = useValidator([
@@ -56,7 +55,7 @@ const AuthScreen = () => {
         new Validation(checkEmail, "Неправильный формат почты!"),
     ]);
     const loginValidator = useValidator([
-        new Validation(checkLogin,'Неправильный формат логина (Введите почту или телефон)')
+        new Validation(checkLogin, 'Неправильный формат логина (Введите почту или телефон)')
     ])
     const passwordValidator = useValidator([
         new Validation(checkLength(6, 25), "Пароль должен быть длиной от 6 до 25 символов"),
@@ -65,29 +64,37 @@ const AuthScreen = () => {
         new Validation(checkEqual(password), "Пароли не совпадают"),
     ]);
 
-    const registerFormValidator = useFormValidator(nameValidator, surnameValidator, passwordValidator,confirmPasswordValidator, phoneValidator);
+    const registerFormValidator = useFormValidator(nameValidator, surnameValidator, passwordValidator, confirmPasswordValidator, phoneValidator);
     const loginFormValidator = useFormValidator(loginValidator, passwordValidator);
 
     async function fetchRegistration() {
         const response = await userApi.registration({
-            fullName: (name + ' ' + surname),email,mobilePhone:phone,password
+            fullName: (name + ' ' + surname),
+            email,
+            mobilePhone: phone,
+            password
         })
-        console.log('RESPONSE : ',response)
+        console.log('RESPONSE :',response)
+        if(response.hasErrors){
+            setErrors(response.data)
+            console.log(response.data);
+            return;
+        }
+        dispatch(fetchUserData())
+        navigation.navigate('Cars');
     }
 
-    async function fetchLogin(){
-        try{
-            const response = await userApi.login({login,password})
+    async function fetchLogin() {
+        try {
+            const response = await userApi.login({login, password})
             dispatch(fetchUserData())
-            console.log('Dispatched',response)
             navigation.navigate('Cars');
-        }
-        catch(e){
+        } catch (e) {
             console.log(e);
         }
     }
 
-    function cleanFields(){
+    function cleanFields() {
         setSurname('')
         setName('')
         setLogin('')
@@ -95,23 +102,34 @@ const AuthScreen = () => {
         setConfirmPasswordText('')
     }
 
-    useEffect(()=>{
+    useEffect(() => {
         cleanFields()
-    },[isRegistration])
+    }, [isRegistration])
 
     if (isRegistration)
         return (
-            <View style = {{flex : 1}}>
+            <View style={{flex: 1}}>
                 <ScrollView contentContainerStyle={styles.container}>
                     <View style={styles.window}>
                         <Text style={styles.title}>Регистрация</Text>
-                        <MyInput errorsHidden={errorsHidden} validator={surnameValidator} placeholder="Фамилия" value={surname} setValue={setSurname}/>
-                        <MyInput errorsHidden={errorsHidden} validator={nameValidator} placeholder="Имя" value={name} setValue={setName}/>
-                        <MyInput errorsHidden={errorsHidden} validator={phoneValidator} placeholder="Номер телефона" value={phone} setValue={setPhone}/>
-                        <MyInput errorsHidden={errorsHidden} validator={emailValidator} placeholder="Почта" value={email} setValue={setEmail}/>
-                        <MyInput errorsHidden={errorsHidden} validator={passwordValidator} placeholder="Пароль" value={password} setValue={setPassword} isPassword/>
-                        <MyInput errorsHidden={errorsHidden} validator={confirmPasswordValidator} placeholder="Повторите пароль" value={confirmPasswordText} setValue={setConfirmPasswordText} isPassword/>
-                        <MyButton disabled={registerFormValidator?.hasErrors()} onClick={fetchRegistration} text={'Зарегистрироваться'}></MyButton>
+                        <MyInput validator={surnameValidator} placeholder="Фамилия"
+                                 value={surname} setValue={setSurname}/>
+                        <MyInput validator={nameValidator} placeholder="Имя" value={name}
+                                 setValue={setName}/>
+                        <MyInput validator={phoneValidator} placeholder="Номер телефона"
+                                 value={phone} setValue={setPhone}/>
+                        <MyInput validator={emailValidator} placeholder="Почта"
+                                 value={email} setValue={setEmail}/>
+                        <MyInput validator={passwordValidator} placeholder="Пароль"
+                                 value={password} setValue={setPassword} isPassword/>
+                        <MyInput validator={confirmPasswordValidator}
+                                 placeholder="Повторите пароль" value={confirmPasswordText}
+                                 setValue={setConfirmPasswordText} isPassword/>
+                        <Text>
+                            {errors}
+                        </Text>
+                        <MyButton disabled={false/*registerFormValidator?.hasErrors()*/} onClick={fetchRegistration}
+                                  text={'Зарегистрироваться'}></MyButton>
                         <TouchableHighlight onPressOut={() => setIsRegistration(!isRegistration)}
                                             underlayColor={stylesVars.$lightBlue}>
                             <Text style={styles.offerText}>Есть аккаунт ? Войдите!</Text>
@@ -126,9 +144,12 @@ const AuthScreen = () => {
         <View style={styles.container}>
             <View style={styles.window}>
                 <Text style={styles.title}>Авторизация</Text>
-                <MyInput errorsHidden={errorsHidden} validator={loginValidator} placeholder="Номер телефона или почта" value={login} setValue={setLogin}/>
-                <MyInput errorsHidden={errorsHidden} validator={passwordValidator} placeholder="Пароль" value={password} setValue={setPassword} isPassword/>
-                <MyButton  disabled={false/*loginFormValidator?.hasErrors()*/} onClick={fetchLogin} text={'Войти'}></MyButton>
+                <MyInput validator={loginValidator} placeholder="Номер телефона или почта"
+                         value={login} setValue={setLogin}/>
+                <MyInput validator={passwordValidator} placeholder="Пароль" value={password}
+                         setValue={setPassword} isPassword/>
+                <MyButton disabled={false/*loginFormValidator?.hasErrors()*/} onClick={fetchLogin}
+                          text={'Войти'}></MyButton>
                 <TouchableHighlight onPressOut={() => setIsRegistration(!isRegistration)}
                                     underlayColor={stylesVars.$lightBlue}>
                     <Text style={styles.offerText}>Нет аккаунта? Зарегистрируйтесь!</Text>
@@ -143,7 +164,7 @@ export default AuthScreen;
 const styles = StyleSheet.create({
     container: {
         width: "100%",
-        minHeight:'100%',
+        minHeight: '100%',
         backgroundColor: '#F4FCFE',
         alignItems: 'center',
         justifyContent: 'center',

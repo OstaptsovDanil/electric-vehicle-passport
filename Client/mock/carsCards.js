@@ -1,29 +1,20 @@
 export const carsCards = [
     {
-        name : 'Audi'
+        carName : 'Малыха',
+        model : 'Audi',
+        vin : '11111111111111111',
+        category : 'A',
+        carType : 'Легковая',
+        engineType : 'Бензиновый',
+        carColor : 'Красный'
     },
-    {
-        name : 'Ласточка'
-    },
-    {
-        name : 'Ласточка'
-    },
-    {
-        name : 'Ласточка'
-    },
-    {
-        name : 'Ласточка'
-    },{
-        name : 'Ласточка'
-    },{
-        name : 'Ласточка'
-    },
-    {
-        name : 'Ласточка'
-    },
-    {
-        name : 'Ласточка'
-    },
-
 
 ]
+
+// model,
+// vin,
+// carType,
+// category,
+// carName,
+// engineType,
+// carColor
