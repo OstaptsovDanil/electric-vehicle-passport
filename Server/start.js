@@ -1,12 +1,14 @@
 import express from "express"
 import mongoose from "mongoose"
 import config from "config"
+import { router } from "./routes/router.js"
 
 const PORT = config.get('port')
 const DB_URI = config.get('mongoURI')
 
 const app = express()
 app.use(express.json())
+app.use('', router)
 
 const startApp = async () => {
     try {
