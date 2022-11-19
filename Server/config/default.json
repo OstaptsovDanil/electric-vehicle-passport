@@ -1,0 +1,7 @@
+{
+    "port": 8080,
+    "mongoURI": "mongodb+srv://LernBackend:u9p-Ki3-qtu-zFr@cluster0.w0uvc9h.mongodb.net/IT_for_people?retryWrites=true&w=majority",
+    
+    "saltRounds": 10,
+    "tokenSecret": "OneLove"
+}
