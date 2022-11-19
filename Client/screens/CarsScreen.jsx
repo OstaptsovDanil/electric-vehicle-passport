@@ -1,25 +1,22 @@
-import React, {useEffect, useState} from 'react';
-import {ScrollView, StyleSheet, View} from "react-native";
-import {carsCards} from "../../mock/carsCards";
-import CarCard from "../../components/CarCard/CarCard";
-
-function Vie() {
-    return null;
-}
+import React, {useEffect} from 'react';
+import {ScrollView, StyleSheet} from "react-native";
+import {carsCards} from "../mock/carsCards";
+import CarCard from "../components/CarCard/CarCard";
+import {useSelector} from "react-redux";
 
 const CarsScreen = () => {
 
-    const [cars,setCars] = useState([])
+    const {cars} = useSelector(state => state.user)
 
     //TODO загружать с api
-    useEffect(()=>{
-        setCars(...carsCards);
-    },[])
+    useEffect(() => {
+
+    }, [])
 
     return (
         <ScrollView contentContainerStyle={styles.container}>
             {
-                carsCards.map(car=>(
+                carsCards.map(car => (
                     <CarCard name={car.name}></CarCard>
                 ))
             }
@@ -29,7 +26,7 @@ const CarsScreen = () => {
 
 const styles = StyleSheet.create({
     container: {
-        width : '100%',
+        width: '100%',
         alignItems: 'center',
         justifyContent: 'center',
     },

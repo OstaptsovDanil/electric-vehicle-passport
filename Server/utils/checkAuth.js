@@ -6,6 +6,7 @@ export default (req, res, next) => {
         const token = (req.headers.authorization || '').replace(/Bearer\s?/, '')
         if(token) {
             try {
+                console.log('TOKEN IN CHECK',JSON.stringify(req.headers.authorization))
                 const decoded = jwt.verify(token, config.get('tokenSecret'))
                 req.userId = decoded._id
                 next()
