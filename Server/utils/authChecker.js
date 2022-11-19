@@ -1,7 +1,7 @@
 import jwt from 'jsonwebtoken'
 import config from 'config'
 
-export default (req, res, next) => {
+const getUserId = (req, res, next) => {
     try {
         const token = (req.headers.authorization || '').replace(/Bearer\s?/, '')
         if(token) {
@@ -28,3 +28,5 @@ export default (req, res, next) => {
         })
     }
 }
+
+export {getUserId}
