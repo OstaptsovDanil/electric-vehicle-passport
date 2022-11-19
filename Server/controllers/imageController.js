@@ -16,9 +16,9 @@ class ImageController {
             }
             const img_path = path.resolve('image', '..', 'Storage/images', fileName);
             await img.mv(path.resolve('image', '..', 'Storage/images', fileName));
-            const post = await Tesseract.recognize(img_path, "rus+eng");
+            const { data: { text } } = await Tesseract.recognize(img_path, "rus+eng");
             return res.json({
-                post
+                text
             });
         }
         catch(e){
