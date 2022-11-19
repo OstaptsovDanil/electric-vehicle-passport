@@ -1,6 +1,7 @@
 import express from "express"
 import mongoose from "mongoose"
 import config from "config"
+import fileUpload from 'express-fileupload'
 import { router } from "./routes/router.js"
 import cors from 'cors'
 
@@ -10,6 +11,7 @@ const DB_URI = config.get('mongoURI')
 const app = express()
 app.use(cors());
 app.use(express.json())
+app.use(fileUpload({}))
 app.use('', router)
 
 const startApp = async () => {
