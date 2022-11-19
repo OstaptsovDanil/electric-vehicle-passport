@@ -2,18 +2,27 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="75b574e3-a453-4203-994d-88924320fc7e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Client/assets/screens/AuthScreen.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Client/assets/screens/CarsScreen.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Client/components/Button/MyButton.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Client/components/CarCard/CarCard.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Client/components/Header/Header.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Client/components/MyInput/MyInput.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Client/constants.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Client/mock/carsCards.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Client/react-native-config.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Client/MyImagePicker.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Client/components/Select/Select.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Client/screens/AddCarScreen.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Client/screens/CarScreen.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Client/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/Client/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/ImagePicker.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/ImagePickerExample.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/assets/screens/AuthScreen.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/assets/screens/CarsScreen.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/components/Button/MyButton.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Client/components/Button/MyButton.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/components/CarCard/CarCard.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Client/components/CarCard/CarCard.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/components/MyInput/MyInput.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Client/components/MyInput/MyInput.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/constants.js" beforeDir="false" afterPath="$PROJECT_DIR$/Client/constants.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/http/userApi.js" beforeDir="false" afterPath="$PROJECT_DIR$/Client/http/userApi.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Client/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Client/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Client/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/Client/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/screens/AuthScreen.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Client/screens/AuthScreen.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/screens/CarsScreen.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Client/screens/CarsScreen.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/utils/Validations.js" beforeDir="false" afterPath="$PROJECT_DIR$/Client/utils/Validations.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/controllers/authController.js" beforeDir="false" afterPath="$PROJECT_DIR$/Server/controllers/authController.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

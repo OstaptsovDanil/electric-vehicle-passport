@@ -2,18 +2,26 @@ import React, {useState} from 'react';
 import {Pressable, StyleSheet, Text} from "react-native";
 import {stylesVars} from "../../constants";
 
-const MyButton = ({text,onClick,...props}) => {
+const MyButton = ({text,onClick,style,disabled,...props}) => {
 
     const [isPressed,setIsPressed] = useState(false);
     const pressableStyles = isPressed ? styles.blueBtnPressed : styles.blueBtn;
 
+    function getStyles(){
+        let styles = {...pressableStyles,...style};
+        if(disabled) styles = {...styles,backgroundColor:'grey'}
+        return styles;
+    }
+
     function pressOut(){
+        if(disabled)
+            return;
         setIsPressed(false);
         onClick();
     }
 
     return (
-        <Pressable style={pressableStyles} onPressIn={()=>setIsPressed(true)} onPressOut={pressOut}>
+        <Pressable style={getStyles()} onPressIn={()=>{!disabled && setIsPressed(true)}} onPressOut={pressOut}>
             <>
                 <Text style={styles.blueBtnText}>{text}</Text>
             </>

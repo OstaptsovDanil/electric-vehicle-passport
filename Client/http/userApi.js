@@ -8,6 +8,7 @@ export async function login(login,password){
     try{
         login = '+79785459515';
         password = '123456';
+        console.log(!!checkEmail(login))
         let response = {};
         if(!checkLogin(login))
             return null

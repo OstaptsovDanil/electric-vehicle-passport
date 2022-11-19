@@ -4,7 +4,7 @@ import {stylesVars} from "../../constants";
 
 const CarCard = ({name,...props}) => {
     return (
-        <Pressable style={styles.container}>
+        <Pressable  style={styles.container}>
             <Text style={styles.text}>{name}</Text>
         </Pressable>
     );

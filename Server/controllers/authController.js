@@ -32,6 +32,7 @@ class AuthController{
                 mobilePhone = undefined,
                 password = undefined
             } = req.body
+            console.log(req.body)
             //Проверка, если пользователь ничего не ввел
             if ((!email && !mobilePhone) || !password) {
                 return res.status(404).json({
