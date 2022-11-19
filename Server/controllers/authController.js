@@ -9,7 +9,7 @@ class AuthController{
     async register(req, res) {
         try {
             const {fullName, email, mobilePhone, password} = req.body
-
+            console.log('REGISTER',req.body);
             const saltRounds = config.get("saltRounds")
             const passwordHash = await bcrypt.hash(password, saltRounds)
 
@@ -32,17 +32,10 @@ class AuthController{
                 mobilePhone = undefined,
                 password = undefined
             } = req.body
-            
             //Проверка, если пользователь ничего не ввел
-            if ((!!email && !!mobilePhone) || (!email && !mobilePhone)) {
+            if ((!email && !mobilePhone) || !password) {
                 return res.status(404).json({
                     message: "Введите почту или пароль"
-                })
-            }
-        
-            if (!password) {
-                return res.status(404).json({
-                    message: "Введите пароль"
                 })
             }
         
@@ -63,7 +56,6 @@ class AuthController{
             const token = createToken(user._id)
             
             const {fullName} = user
-
             res.json({
                 userData: {
                     fullName,
@@ -73,6 +65,17 @@ class AuthController{
         } catch(err) {
             console.log(err)
             res.status(500).json({message: 'Что-то пошло не так, попробуйте позже...'})
+        }
+    }
+    async getUser(req,res){
+        try{
+            console.log('Getting user');
+            const userId = req.userId;
+            const user = await UserModel.findById(userId);
+            const {fullName,email,mobilePhone,cars} = user;
+            res.json({fullName,email,mobilePhone,cars})
+        }catch (e) {
+
         }
     }
 }
