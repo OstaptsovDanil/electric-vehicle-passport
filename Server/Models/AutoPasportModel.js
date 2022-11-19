@@ -1,10 +1,15 @@
 import {Schema, model} from "mongoose";
 
 const AutoPasportModel = Schema({
-    _id: {
-        type: Number,
+    vin: {
+        type: String,
         required: true,
         unique: true,
+    },
+    userId:{
+        type:Schema.Types.ObjectId,
+        ref: 'User', 
+        required: true,
     },
     mark: {
         type: String,
@@ -24,55 +29,57 @@ const AutoPasportModel = Schema({
     },
     yearOfManufacture: {
         type: Number,
-        required: true
+        required: false
     },
     engineModel: {
         type: String,
-        required: true
+        required: false
     },
     engineNumber: {
         type: String,
-        required: true
+        required: false
     },
     chassisNumbers: {
         type: String,
-        required: true
+        required: false
     },
     bodyNumbers: {
         type: String,
-        required: true
+        required: false
     },
     enginePower: {
         type: String,
-        required: true
+        required: false
     },
     engineDisplacement: {
         type: String,
-        required: true
+        required: false
     },
+
     engineType: {
         type: String,
         required: true
     },
+    
     permittedMaximumMass: {
         type: Number,
-        required: true
+        required: false
     },
     weightWithoutLoad: {
         type: Number,
-        required: true
+        required: false
     },
     manufacturerInformation: {
         type: String,
-        required: true
+        required: false
     },
     countryOfExport: {
         type: String,
-        required: true
+        required: false
     },
     customsRestrictions: {
         type: String,
-        required: true
+        required: false
     },
 })
 
