@@ -10,10 +10,6 @@ const CarsScreen = () => {
     const {cars} = useSelector(state => state.user)
     const navigation = useNavigation();
 
-    useEffect(() => {
-        console.log(cars)
-    }, [cars])
-
     return (
         <ScrollView contentContainerStyle={styles.container}>
             {

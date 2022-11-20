@@ -35,7 +35,8 @@ const userSlice = createSlice({
     initialState,
     reducers: {
         async setId(state){
-            const token = await  AsyncStorage.getItem('token');
+            const token = await AsyncStorage.getItem('token');
+            console.log('TOKEN IN STATE',token)
             if(!token)
             {
                 for(let field in state){
@@ -44,9 +45,10 @@ const userSlice = createSlice({
                 return;
             }
             try{
-                const payload = jwtDecode(token);
+                const payload = await jwtDecode(token);
                 if(payload){
-                    state.userId = payload.userId;
+                    state.userId = payload._id;
+                    console.log('STATE ID', state.userId)
                 }
             }
             catch (e){
@@ -68,6 +70,7 @@ const userSlice = createSlice({
                 state.fullName = fullName;
                 state.cars = [...cars];
                 state.mobilePhone = mobilePhone;
+                state.userId = action.payload._id;
                 console.log('STATE USER : ',action.payload)
             }
             catch(e){
@@ -89,3 +92,4 @@ const userSlice = createSlice({
 })
 
 export default userSlice.reducer;
+export const {setId} = userSlice.actions;

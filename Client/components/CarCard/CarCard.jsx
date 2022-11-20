@@ -17,10 +17,6 @@ const CarCard = ({carData}) => {
         carColor
     } = carData
 
-    useEffect(()=>{
-        console.log('CarDATA',carData);
-    },[])
-
     const navigation = useNavigation();
     const dispatch = useDispatch();
 

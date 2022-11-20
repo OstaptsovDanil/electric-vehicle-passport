@@ -81,8 +81,8 @@ class AuthController{
             const userId = req.userId;
             const user = await UserModel.findById(userId).populate('cars');
             console.log(user)
-            const {fullName,email,mobilePhone,cars} = user;
-            res.json({fullName,email,mobilePhone,cars})
+            const {fullName,email,mobilePhone,cars,_id} = user;
+            res.json({fullName,email,mobilePhone,cars,_id})
         }catch (e) {
 
         }

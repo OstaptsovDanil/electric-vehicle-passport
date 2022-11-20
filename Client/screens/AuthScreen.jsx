@@ -17,8 +17,8 @@ import {
     useValidator,
     Validation
 } from "../utils/Validations";
-import {useDispatch} from "react-redux";
-import {fetchUserData} from "../store/slices/userSlice";
+import {useDispatch, useSelector} from "react-redux";
+import {fetchUserData, setId} from "../store/slices/userSlice";
 
 function Input() {
     return null;
@@ -39,6 +39,7 @@ const AuthScreen = () => {
     const [errors,setErrors] = useState('')
 
     const dispatch = useDispatch();
+    const {userId} = useSelector(state=>state.user)
 
     const nameValidator = useValidator([
         new Validation(checkLength(3, 20), "Имя должна быть длиной от 3 до 20 символов"),
