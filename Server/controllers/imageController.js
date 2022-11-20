@@ -43,16 +43,29 @@ class ImageController {
 
                 const { data: { text } } = await Tesseract.recognize(img_path, "rus+eng");
 
-                //Удаление файла
-                fs.unlink(img_path, err => {
-                    if(err) 
-                        console.log(err); // не удалось удалить файл
-                    console.log('Файл успешно удалён');
-                });
+                const list = text.split('\n')
 
+                for (let i = 0; i < list.length; i++){
+                    console.log(list[i])
+                }
+
+                const autopasport = {
+                    vin: list[1],
+                    model: list[3],
+                    vehicleType: list[4].split(')').pop(),
+                    vehicleCategory: list[5].split(')').pop(),
+                    engineType: list[13].split('_').pop()
+                }
+
+                //Удаление файла
+                // fs.unlink(img_path, err => {
+                //     if(err) 
+                //         console.log(err); // не удалось удалить файл
+                //     console.log('Файл успешно удалён');
+                // });
 
                 return res.json({
-                    text
+                    autopasport
                 });
             });
 
