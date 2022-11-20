@@ -1,12 +1,10 @@
 import Tesseract from "tesseract.js";
-import path from "path";
-import PythonShell from "python-shell"
 import {spawn} from "child_process"
-import fs from "fs"
 
 class ImageController {
     async uploadImage(req, res) {
         try {
+            console.log("\n\n\nIMG",req.files)
             const {img} = req.files;
             const types = ["JPG", "JPEG", "PNG", "HEIC", "jpg", "jpeg", "png", "heic"];
 
@@ -18,10 +16,10 @@ class ImageController {
                 })
             }
 
-            let img_path = 'Storage/images/ap.' + fileName.split('.').pop() 
+            let img_path = 'Storage/images/ap.' + fileName.split('.').pop()
             await img.mv(img_path)
-            
-            const pathToMainPy = 'D:\\Programming\\ElectrocarIdentification\\Server\\Algorithm\\main.py'
+
+            const pathToMainPy = '..\\Algorithm\\main.py'
 
             const childPython = spawn('python', [pathToMainPy, img_path]);
 
@@ -41,11 +39,11 @@ class ImageController {
             childPython.on('close', async (code) => {
                 console.log(`child process exited with code ${code}`);
 
-                const { data: { text } } = await Tesseract.recognize(img_path, "rus+eng");
+                const {data: {text}} = await Tesseract.recognize(img_path, "rus+eng");
 
                 const list = text.split('\n')
 
-                for (let i = 0; i < list.length; i++){
+                for (let i = 0; i < list.length; i++) {
                     console.log(list[i])
                 }
 
@@ -56,7 +54,7 @@ class ImageController {
                     vehicleCategory: list[5].split(')').pop(),
                     engineType: list[13].split('_').pop()
                 }
-
+                console.log('\n\n\n',autopasport)
                 //Удаление файла
                 // fs.unlink(img_path, err => {
                 //     if(err) 
@@ -69,15 +67,14 @@ class ImageController {
                 });
             });
 
-           
-        }
-        catch(e){
+
+        } catch (e) {
             console.log(e);
             res.status(500).json({
                 message: "Что-то пошло не так"
             });
         }
-            
+
     }
 }
 

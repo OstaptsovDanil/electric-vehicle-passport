@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {Button, Image, View} from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 
-export default function MyImagePicker({style,text}) {
+export default function MyImagePicker({style,text,onPickImage}) {
     const [image, setImage] = useState(null);
 
     const pickImage = async () => {
@@ -10,11 +10,12 @@ export default function MyImagePicker({style,text}) {
         let result = await ImagePicker.launchImageLibraryAsync({
             mediaTypes: ImagePicker.MediaTypeOptions.All,
             allowsEditing: true,
-            aspect: [4, 3],
+            aspect: [9, 16],
             quality: 1,
         });
 
         if (!result.canceled) {
+            onPickImage(result.assets[0])
             setImage(result.assets[0].uri);
         }
     };

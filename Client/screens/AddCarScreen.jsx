@@ -9,6 +9,7 @@ import {checkLength, checkName, useFormValidator, useValidator, Validation} from
 import {fetchAddNewCar} from "../store/slices/userSlice";
 import {useNavigation} from "@react-navigation/native";
 import {useDispatch} from "react-redux";
+import {getPts} from "../http/userApi";
 
 //TODO получать опции с сервера
 const categories = [
@@ -31,6 +32,7 @@ const engineTypes = [
 
 const AddCarScreen = () => {
 
+    const [ptsImage,setPtsImage] = useState();
     const [model, setModel] = useState('');
     const [vin, setVin] = useState('');
     const [carName, setCarName] = useState('');
@@ -52,6 +54,18 @@ const AddCarScreen = () => {
 
     const formValidator = useFormValidator(colorValidator);
 
+    async function pickImage(file){
+        console.log('File',file)
+        const data = new FormData();
+        data.append('img', {
+            uri: file.uri,
+            name: file.fileName,
+            type: 'image/jpeg'
+        });
+        const response = await getPts(data);
+        console.log('RESPONSE',response);
+    }
+
     async function handleAddCar(){
         await dispatch(fetchAddNewCar({
             model,
@@ -70,7 +84,7 @@ const AddCarScreen = () => {
             <ScrollView contentContainerStyle={styles.container}>
                 <View style={styles.window}>
                     <Text style={styles.title}>Добавление нового ТС</Text>
-                    <MyImagePicker text="Добавить фото ПТС" style={{marginBottom: 20, alignItems: 'center'}}/>
+                    <MyImagePicker onPickImage={pickImage} text="Добавить фото ПТС" style={{marginBottom: 20, alignItems: 'center'}}/>
                     <MyInput
                         placeholder="Как хотите назвать автомобиль?"
                         value={carName}

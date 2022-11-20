@@ -83,8 +83,11 @@ const userSlice = createSlice({
             state.entranceLoadingStatus = LoadingStatuses.loading;
         },
         [fetchAddNewCar.fulfilled]: (state,action) =>{
-            state.carLoadingStatus = LoadingStatuses.idle;
-            state.cars = [...state.cars,action.payload]
+            if(action.payload.hasErrors){
+                state.carLoadingStatus = LoadingStatuses.error;
+                return;
+            }
+            state.cars = [...state.cars,action.payload.data]
         },
         [fetchAddNewCar.pending]: (state) =>{
             state.carLoadingStatus = LoadingStatuses.loading;

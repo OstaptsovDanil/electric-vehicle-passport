@@ -12,17 +12,18 @@ class CarController {
                 res.status(404).json({
                     message: "Пользователь не найден"
                 })
+                return;
             }
             let autoPasport = await AutoPasport.findOne({vin})
             if (autoPasport) {
                 res.status(400).json({
                     message: "Уже зарегестрирована"
                 })
+                return;
             }
 
             autoPasport = await AutoPasport.create({vin, userId, model, carColor, nameOfVehicle,vehicleType, vehicleCategory, engineType})
             await user.updateOne({$push: {cars: autoPasport._id}});
-
             res.json({
                 autoPasport
             })

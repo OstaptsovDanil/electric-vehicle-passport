@@ -9,6 +9,7 @@ import {createNativeStackNavigator} from "react-native-screens/native-stack";
 import {fetchUserData} from "../store/slices/userSlice";
 import {getUserInfo} from "../http/userApi";
 import {useNavigation} from "@react-navigation/native";
+import {AsyncStorage} from "react-native";
 
 const Drawer = createDrawerNavigator()
 const Stack = createNativeStackNavigator();
@@ -19,9 +20,10 @@ const DrawerNavigator = () => {
     const navigation = useNavigation();
 
     async function tryGetUserData(){
-        const response = await getUserInfo();
-        if(response.hasErrors){
-            console.log('HAS ERRORS')
+        const token = await AsyncStorage.getItem('token');
+        console.log(token)
+        if(!token){
+            console.log('НЕТ ТОКЕНА')
             return;
         }
         console.log('SUCCESSFULLY GET USER DATA')
