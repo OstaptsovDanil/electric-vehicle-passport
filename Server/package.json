@@ -20,6 +20,7 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.7.2",
     "nodemon": "^2.0.20",
+    "python-shell": "^3.0.1",
     "tesseract.js": "^3.0.3"
   }
 }

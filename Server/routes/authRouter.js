@@ -7,4 +7,4 @@ export const authRouter = new Router()
 
 authRouter.post('/registration', registrationValidations, checkValidation, authController.register)
 authRouter.post('/login', authController.login)
-authRouter.get('/me',getUserId, authController.getUser)
+authRouter.get('/me', getUserId, authController.getUser)
