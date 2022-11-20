@@ -5,10 +5,8 @@ import {checkEmail, checkLogin, checkPhone} from "../utils/Validations";
 
 export async function login(login,password){
     try{
-        login = '+79785459421';
-        password = '123456';
-        console.log(login,password)
-        console.log(!!checkEmail(login))
+        // login = '+79785459421';
+        // password = '123456';
         let response = {};
         if(!checkLogin(login))
             return null
@@ -17,21 +15,28 @@ export async function login(login,password){
         else if(!!checkPhone(login))
             response = await $host.post('/auth/login',{mobilePhone:login,password})
         await AsyncStorage.setItem('token',response.data.token);
-        return jwtDecode(response.data.token);
-    }catch(e){
+        return {
+            hasErrors:false,
+            data: jwtDecode(response.data.token)
+        }
+    }
+    catch(e){
         console.log(e)
-        throw new Error(e?.response?.data?.message);
+        return {
+            hasErrors: true,
+            data: e?.response.data.message
+        };
     }
 }
 
 export async function registration(inputData){
     try{
-        inputData = {
-            fullName: "1 1",
-            password:'123456',
-            mobilePhone:'+79785459421',
-            email:"yaa@ya.ru"
-        }
+        // inputData = {
+        //     fullName: "1 1",
+        //     password:'123456',
+        //     mobilePhone:'+79785459421',
+        //     email:"yaa@ya.ru"
+        // }
         const {data} = await $host.post('auth/registration', {...inputData});
         await AsyncStorage.setItem('token',data.token);
         return {
@@ -56,9 +61,16 @@ export async function registration(inputData){
 export async function getUserInfo(){
     try{
         const {data} = await $authHost.get('auth/me');
-        return data;
+        return {
+            hasErrors:false,
+            data,
+        };
     }catch(e){
         console.log(e);
+        return {
+            hasErrors : true,
+            data : e
+        }
     }
 }
 

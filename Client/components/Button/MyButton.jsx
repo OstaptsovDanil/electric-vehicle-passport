@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {Pressable, StyleSheet, Text} from "react-native";
 import {stylesVars} from "../../constants";
 
-const MyButton = ({text,onClick,style,disabled,...props}) => {
+const MyButton = ({text,onClick,disabled,textStyle=16,style}) => {
 
     const [isPressed,setIsPressed] = useState(false);
     const pressableStyles = isPressed ? styles.blueBtnPressed : styles.blueBtn;
@@ -22,9 +22,7 @@ const MyButton = ({text,onClick,style,disabled,...props}) => {
 
     return (
         <Pressable style={getStyles()} onPressIn={()=>{!disabled && setIsPressed(true)}} onPressOut={pressOut}>
-            <>
-                <Text style={styles.blueBtnText}>{text}</Text>
-            </>
+            <Text style={{...styles.blueBtnText,...textStyle}}>{text}</Text>
         </Pressable>
     );
 };

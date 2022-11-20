@@ -2,18 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="75b574e3-a453-4203-994d-88924320fc7e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Client/navigation/DrawerNavigator.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Client/navigation/MyDrawer.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Client/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/Client/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/babel.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/Client/babel.config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/components/CarCard/CarCard.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Client/components/CarCard/CarCard.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Client/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/Client/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/components/Button/MyButton.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Client/components/Button/MyButton.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/http/userApi.js" beforeDir="false" afterPath="$PROJECT_DIR$/Client/http/userApi.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/navigation/DrawerNavigator.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Client/navigation/DrawerNavigator.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/screens/AddCarScreen.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Client/screens/AddCarScreen.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Client/screens/AuthScreen.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Client/screens/AuthScreen.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Client/screens/CarsScreen.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Client/screens/CarsScreen.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Client/store/slices/userSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/Client/store/slices/userSlice.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Server/controllers/authController.js" beforeDir="false" afterPath="$PROJECT_DIR$/Server/controllers/authController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/controllers/carController.js" beforeDir="false" afterPath="$PROJECT_DIR$/Server/controllers/carController.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -68,7 +67,7 @@
       <workItem from="1668844584561" duration="675000" />
       <workItem from="1668845830572" duration="7491000" />
       <workItem from="1668889625136" duration="11360000" />
-      <workItem from="1668917763809" duration="4371000" />
+      <workItem from="1668917763809" duration="11021000" />
     </task>
     <servers />
   </component>

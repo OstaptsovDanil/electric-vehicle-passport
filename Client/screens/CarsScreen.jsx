@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {ScrollView, StyleSheet} from "react-native";
 import CarCard from "../components/CarCard/CarCard";
 import {useSelector} from "react-redux";
@@ -17,7 +17,8 @@ const CarsScreen = () => {
                     <CarCard key={car?.vin} carData={car}></CarCard>
                 ))
             }
-            <MyButton onClick={() => navigation.navigate("AddCar")} style={styles.add} text={"+"}/>
+            <MyButton onClick={() => navigation.navigate("AddCar")} style={styles.add} textStyle={styles.btnText}
+                      text={"+"}/>
         </ScrollView>
     );
 };
@@ -35,6 +36,13 @@ const styles = StyleSheet.create({
         borderRadius: 30,
         fontSize: 5,
         marginBottom: 20
+    },
+    btn: {
+        width: 30,
+        borderRadius: 50
+    },
+    btnText: {
+        fontSize: 27,
     }
 });
 

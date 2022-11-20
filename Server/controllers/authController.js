@@ -51,7 +51,7 @@ class AuthController{
                 user = await UserModel.findOne({mobilePhone})
             if (!user) {
                 return res.status(404).json({
-                    message: "Неверный логин "
+                    message: "Неверный логин"
                 })
             }
             const isPasswordValid = await bcrypt.compare(password, user.password)
@@ -77,10 +77,8 @@ class AuthController{
     }
     async getUser(req,res){
         try{
-            console.log('Getting user');
             const userId = req.userId;
             const user = await UserModel.findById(userId).populate('cars');
-            console.log(user)
             const {fullName,email,mobilePhone,cars,_id} = user;
             res.json({fullName,email,mobilePhone,cars,_id})
         }catch (e) {

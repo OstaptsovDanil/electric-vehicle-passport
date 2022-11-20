@@ -31,7 +31,7 @@ const AuthScreen = () => {
     const [isRegistration, setIsRegistration] = useState(false);
     const [surname, setSurname] = useState('');
     const [name, setName] = useState('');
-    const [login, setLogin] = useState('');
+    const [loginText, setLoginText] = useState('');
     const [phone, setPhone] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -87,7 +87,12 @@ const AuthScreen = () => {
 
     async function fetchLogin() {
         try {
-            const response = await userApi.login({login, password})
+            const response = await userApi.login(loginText, password)
+            console.log(response);
+            if(response.hasErrors){
+                setErrors(response.data)
+                return;
+            }
             dispatch(fetchUserData())
             navigation.navigate('Cars');
         } catch (e) {
@@ -98,9 +103,10 @@ const AuthScreen = () => {
     function cleanFields() {
         setSurname('')
         setName('')
-        setLogin('')
+        setLoginText('')
         setPassword('')
         setConfirmPasswordText('')
+        setErrors('');
     }
 
     useEffect(() => {
@@ -129,7 +135,7 @@ const AuthScreen = () => {
                         <Text>
                             {errors}
                         </Text>
-                        <MyButton disabled={false/*registerFormValidator?.hasErrors()*/} onClick={fetchRegistration}
+                        <MyButton disabled={registerFormValidator?.hasErrors()} onClick={fetchRegistration}
                                   text={'Зарегистрироваться'}></MyButton>
                         <TouchableHighlight onPressOut={() => setIsRegistration(!isRegistration)}
                                             underlayColor={stylesVars.$lightBlue}>
@@ -146,10 +152,13 @@ const AuthScreen = () => {
             <View style={styles.window}>
                 <Text style={styles.title}>Авторизация</Text>
                 <MyInput validator={loginValidator} placeholder="Номер телефона или почта"
-                         value={login} setValue={setLogin}/>
+                         value={loginText} setValue={setLoginText}/>
                 <MyInput validator={passwordValidator} placeholder="Пароль" value={password}
                          setValue={setPassword} isPassword/>
-                <MyButton disabled={false/*loginFormValidator?.hasErrors()*/} onClick={fetchLogin}
+                <Text>
+                    {errors}
+                </Text>
+                <MyButton disabled={loginFormValidator?.hasErrors()} onClick={fetchLogin}
                           text={'Войти'}></MyButton>
                 <TouchableHighlight onPressOut={() => setIsRegistration(!isRegistration)}
                                     underlayColor={stylesVars.$lightBlue}>
@@ -168,7 +177,6 @@ const styles = StyleSheet.create({
         minHeight: '100%',
         backgroundColor: '#F4FCFE',
         alignItems: 'center',
-        justifyContent: 'center',
     },
     window: {
         width: "85%",

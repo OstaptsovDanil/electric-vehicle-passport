@@ -16,7 +16,7 @@ class CarController {
             let autoPasport = await AutoPasport.findOne({vin})
             if (autoPasport) {
                 res.status(400).json({
-                    message: "Уже зарегестрированна"
+                    message: "Уже зарегестрирована"
                 })
             }
 

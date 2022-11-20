@@ -1,19 +1,37 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import AuthScreen from "../screens/AuthScreen";
 import CarsScreen from "../screens/CarsScreen";
 import AddCarScreen from "../screens/AddCarScreen";
 import CarScreen from "../screens/CarScreen";
 import {createDrawerNavigator} from "@react-navigation/drawer";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {createNativeStackNavigator} from "react-native-screens/native-stack";
+import {fetchUserData} from "../store/slices/userSlice";
+import {getUserInfo} from "../http/userApi";
+import {useNavigation} from "@react-navigation/native";
 
 const Drawer = createDrawerNavigator()
 const Stack = createNativeStackNavigator();
 
 const DrawerNavigator = () => {
     const {userId} = useSelector(state=>state.user);
+    const dispatch = useDispatch()
+    const navigation = useNavigation();
 
-    console.log('USERID : ',userId);
+    async function tryGetUserData(){
+        const response = await getUserInfo();
+        if(response.hasErrors){
+            console.log('HAS ERRORS')
+            return;
+        }
+        console.log('SUCCESSFULLY GET USER DATA')
+        dispatch(fetchUserData());
+        navigation.navigate('Cars');
+    }
+
+    useEffect(()=>{
+        tryGetUserData()
+    },[])
 
     if(!userId)
         return (
@@ -46,7 +64,7 @@ const DrawerNavigator = () => {
         )
 
     return (
-        <Drawer.Navigator initialRouteName={"Cars"} screenOptions={{headerShown: false,}}>
+        <Drawer.Navigator initialRouteName={"Cars"} screenOptions={{}}>
             <Drawer.Screen
                 name="Auth"
                 component={AuthScreen}
@@ -65,7 +83,7 @@ const DrawerNavigator = () => {
             <Drawer.Screen
                 name="Car"
                 component={CarScreen}
-                options={{drawerLabel: () => null, drawerIcon: ()=>null}}
+                options={{drawerLabel: () => null, drawerIcon: ()=>null,title : 'Автомобиль'}}
             />
         </Drawer.Navigator>
     );

@@ -65,19 +65,21 @@ const userSlice = createSlice({
                     return;
                 }
                 state.entranceLoadingStatus = LoadingStatuses.idle;
-                const {email,fullName,cars,mobilePhone} = action.payload;
+                const {email,fullName,cars,mobilePhone,_id} = action.payload.data;
                 state.email = email;
                 state.fullName = fullName;
                 state.cars = [...cars];
                 state.mobilePhone = mobilePhone;
-                state.userId = action.payload._id;
-                console.log('STATE USER : ',action.payload)
+                state.userId = _id;
+                console.log('STATE USER : ',state)
             }
             catch(e){
+                console.log('GET ERROR WHILE FETCHING USER DATA...')
                 state.entranceLoadingStatus = LoadingStatuses.error
             }
         },
         [fetchUserData.pending]: (state) =>{
+            console.log('START FETCHING USER DATA...')
             state.entranceLoadingStatus = LoadingStatuses.loading;
         },
         [fetchAddNewCar.fulfilled]: (state,action) =>{

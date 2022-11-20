@@ -101,19 +101,19 @@ const AddCarScreen = () => {
                         />
                     </View>
 
-                    <View style={styles.wrapper}>
+                    {/*<View style={styles.wrapper}>
                         <Text>Двигатель</Text>
                         <Select
                             elements={engineTypes}
                             onSelect={(value) => setEngineType(value)}
                         />
-                    </View>
+                    </View>*/}
                     <MyInput
                         validator={colorValidator}
                         placeholder="Цвет машины"
                         value={carColor}
                         setValue={setCarColor}/>
-                    <MyButton onClick={handleAddCar} disabled={formValidator?.hasErrors()} text={'Добавить'}></MyButton>
+                    <MyButton style = {styles.btn} onClick={handleAddCar} disabled={formValidator?.hasErrors()} text={'Добавить'}></MyButton>
                 </View>
 
             </ScrollView>
@@ -147,7 +147,9 @@ const styles = StyleSheet.create({
     title: {
         fontSize: 20,
         marginBottom: 20,
-    }
+    },
+
+
 });
 
 export default AddCarScreen;
