@@ -1,5 +1,8 @@
 import Tesseract from "tesseract.js";
 import path from "path";
+import PythonShell from "python-shell"
+import {spawn} from "child_process"
+import fs from "fs"
 
 class ImageController {
     async uploadImage(req, res) {
@@ -14,12 +17,46 @@ class ImageController {
                     message: "Неверный формат файла"
                 })
             }
-            const img_path = path.resolve('image', '..', 'Storage/images', fileName);
-            await img.mv(path.resolve('image', '..', 'Storage/images', fileName));
-            const { data: { text } } = await Tesseract.recognize(img_path, "rus+eng");
-            return res.json({
-                text
+
+            let img_path = 'Storage/images/ap.' + fileName.split('.').pop() 
+            await img.mv(img_path)
+            
+            const pathToMainPy = 'D:\\Programming\\ElectrocarIdentification\\Server\\Algorithm\\main.py'
+
+            const childPython = spawn('python', [pathToMainPy, img_path]);
+
+            childPython.stdout.on('data', async (data) => {
+
+                console.log(`stdout: ${data}`)
             });
+
+            childPython.stderr.on('data', (data) => {
+                console.error(`stderr: ${data}`);
+
+                return res.json({
+                    message: "ban"
+                })
+            });
+
+            childPython.on('close', async (code) => {
+                console.log(`child process exited with code ${code}`);
+
+                const { data: { text } } = await Tesseract.recognize(img_path, "rus+eng");
+
+                //Удаление файла
+                fs.unlink(img_path, err => {
+                    if(err) 
+                        console.log(err); // не удалось удалить файл
+                    console.log('Файл успешно удалён');
+                });
+
+
+                return res.json({
+                    text
+                });
+            });
+
+           
         }
         catch(e){
             console.log(e);
