@@ -19,10 +19,10 @@ const AutoPasportModel = Schema({
         type : String,
         required: true,
     },
-    // nameOfVehicle: {
-    //     type: String,
-    //     required: true
-    // },
+    nameOfVehicle: {
+        type: String,
+        required: true
+    },
     vehicleCategory: {
         type: String,
         required: true
