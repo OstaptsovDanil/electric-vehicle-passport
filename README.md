@@ -23,4 +23,4 @@
 - [Данил Остапцов](https://github.com/OstaptsovDanil)
     - Backend developer
 - [Дмитрий Ульянов](https://github.com/Dustyy47)
-    - Middle Fullstack developer
+    - Junior Fullstack developer
